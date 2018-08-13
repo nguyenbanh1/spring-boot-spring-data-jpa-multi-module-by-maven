@@ -1,14 +1,14 @@
 package itsol.intership02.Entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "CONF_AREA")
 public class Conf_Area {
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
     @Column(name = "CONF_AREA_ID")
     private int conf_area_id;
 
@@ -57,11 +57,13 @@ public class Conf_Area {
     @Column(name = "DATE_UPDATE")
     private Date date_update;
 
-    @Column(name = "USER_CREATED")
-    private int user_created;
+    @ManyToOne
+    @JoinColumn(name = "USER_CREATED")
+    private Staff user_created;
 
-    @Column(name = "USER_UPDATE")
-    private int user_update;
+    @ManyToOne
+    @JoinColumn(name = "USER_UPDATE")
+    private Staff user_update;
 
 
     @Column(name = "STATUS")
@@ -188,19 +190,19 @@ public class Conf_Area {
         this.date_update = date_update;
     }
 
-    public int getUser_created() {
+    public Staff getUser_created() {
         return user_created;
     }
 
-    public void setUser_created(int user_created) {
+    public void setUser_created(Staff user_created) {
         this.user_created = user_created;
     }
 
-    public int getUser_update() {
+    public Staff getUser_update() {
         return user_update;
     }
 
-    public void setUser_update(int user_update) {
+    public void setUser_update(Staff user_update) {
         this.user_update = user_update;
     }
 

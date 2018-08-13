@@ -14,14 +14,14 @@ public class Staff {
 
     @ManyToOne
     @JoinColumn(name = "CONF_AREA_ID")
-    private int conf_area_id;
+    private Conf_Area conf_area_id;
 
 
     @Column(name = "MEDIA_ID")
     private int media_id;
 
     @Column(name = "STAFF_CODE")
-    private String staff_code;
+    private String staffcode;
 
 
     @Column(name = "USERNAME")
@@ -70,11 +70,13 @@ public class Staff {
     @Column(name = "DEGREE")
     private String degree;
 
-    @Column(name = "USER_CREATED")
-    private int user_created;
+    @ManyToOne
+    @JoinColumn(name = "USER_CREATED")
+    private Staff user_created;
 
-    @Column(name = "USER_UPDATE")
-    private int user_update;
+    @ManyToOne
+    @JoinColumn(name = "USER_UPDATE")
+    private Staff user_update;
 
     @Column(name = "DATE_CREATED")
     private Date date_created;
@@ -112,11 +114,12 @@ public class Staff {
         this.id = id;
     }
 
-    public int getConf_area_id() {
+
+    public Conf_Area getConf_area_id() {
         return conf_area_id;
     }
 
-    public void setConf_area_id(int conf_area_id) {
+    public void setConf_area_id(Conf_Area conf_area_id) {
         this.conf_area_id = conf_area_id;
     }
 
@@ -129,11 +132,11 @@ public class Staff {
     }
 
     public String getStaff_code() {
-        return staff_code;
+        return staffcode;
     }
 
-    public void setStaff_code(String staff_code) {
-        this.staff_code = staff_code;
+    public void setStaff_code(String staffcode) {
+        this.staffcode = staffcode;
     }
 
     public String getUsername() {
@@ -248,19 +251,19 @@ public class Staff {
         this.degree = degree;
     }
 
-    public int getUser_created() {
+    public Staff getUser_created() {
         return user_created;
     }
 
-    public void setUser_created(int user_created) {
+    public void setUser_created(Staff user_created) {
         this.user_created = user_created;
     }
 
-    public int getUser_update() {
+    public Staff getUser_update() {
         return user_update;
     }
 
-    public void setUser_update(int user_update) {
+    public void setUser_update(Staff user_update) {
         this.user_update = user_update;
     }
 
