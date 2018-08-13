@@ -1,8 +1,6 @@
 package itsol.intership02.rescontroller;
 
 
-import itsol.intership02.Entities.Employee;
-import itsol.intership02.dao.EmployeeDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
