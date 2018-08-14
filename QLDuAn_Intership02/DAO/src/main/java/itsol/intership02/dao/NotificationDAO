@@ -1,0 +1,10 @@
+
+package itsol.intership02.dao;
+
+import itsol.intership02.Entities.Notification;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface NotificationDAO extends JpaRepository<Notification,Integer> {
+
+}
