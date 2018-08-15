@@ -17,8 +17,8 @@ public class Staff {
     private Conf_Area conf_area_id;
 
 
-    @Column(name = "MEDIA_URL")
-    private int media_URL;
+    @Column(name = "MEDIA_ID")
+    private int media_id;
 
     @Column(name = "STAFF_CODE")
     private String staffcode;
@@ -123,22 +123,21 @@ public class Staff {
         this.conf_area_id = conf_area_id;
     }
 
-    public int getMedia_URL() {
-        return media_URL;
+    public int getMedia_id() {
+        return media_id;
     }
 
-    public void setMedia_URL(int media_URL) {
-        this.media_URL = media_URL;
+    public void setMedia_id(int media_id) {
+        this.media_id = media_id;
     }
 
-    public String getStaffcode() {
+    public String getStaff_code() {
         return staffcode;
     }
 
-    public void setStaffcode(String staffcode) {
+    public void setStaff_code(String staffcode) {
         this.staffcode = staffcode;
     }
-
 
     public String getUsername() {
         return username;
