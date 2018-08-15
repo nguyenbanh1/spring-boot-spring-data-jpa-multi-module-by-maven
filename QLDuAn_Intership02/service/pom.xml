@@ -12,22 +12,5 @@
     <artifactId>service</artifactId>
     <packaging>jar</packaging>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>itsol.intership02</groupId>
-            <artifactId>DAO</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>itsol.intership02</groupId>
-            <artifactId>domain</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-
-    </dependencies>
-
 
 </project>

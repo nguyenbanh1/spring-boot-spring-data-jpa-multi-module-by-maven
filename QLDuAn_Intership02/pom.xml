@@ -12,10 +12,11 @@
 
     <!--Quan trọng -->
     <modules>
-        <module>service</module>
         <module>domain</module>
         <module>DAO</module>
         <module>web-service</module>
+        <module>service</module>
+
     </modules>
 
 
