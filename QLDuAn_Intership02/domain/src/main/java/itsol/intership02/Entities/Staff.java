@@ -17,8 +17,9 @@ public class Staff {
     private Conf_Area conf_area_id;
 
 
-    @Column(name = "MEDIA_ID")
-    private int media_id;
+    @ManyToOne
+    @JoinColumn(name = "MEDIA_ID")
+    private Media media_id;
 
     @Column(name = "STAFF_CODE")
     private String staffcode;
@@ -123,12 +124,20 @@ public class Staff {
         this.conf_area_id = conf_area_id;
     }
 
-    public int getMedia_id() {
+    public Media getMedia_id() {
         return media_id;
     }
 
-    public void setMedia_id(int media_id) {
+    public void setMedia_id(Media media_id) {
         this.media_id = media_id;
+    }
+
+    public String getStaffcode() {
+        return staffcode;
+    }
+
+    public void setStaffcode(String staffcode) {
+        this.staffcode = staffcode;
     }
 
     public String getStaff_code() {

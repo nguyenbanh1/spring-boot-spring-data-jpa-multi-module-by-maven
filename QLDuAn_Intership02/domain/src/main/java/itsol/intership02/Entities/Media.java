@@ -3,6 +3,8 @@ package itsol.intership02.Entities;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "MEDIA")
 public class Media
 {
 
