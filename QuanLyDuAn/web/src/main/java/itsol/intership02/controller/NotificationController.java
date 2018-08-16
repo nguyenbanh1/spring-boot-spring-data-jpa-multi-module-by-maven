@@ -36,14 +36,14 @@ public class NotificationController {
     }
 
 
-    @RequestMapping(value = "staff/{code}", method = RequestMethod.GET, produces = {"application/json"})
-    public Staff getStaffByCode(@PathVariable("code") String code) {
-        return staffDAO.findByStaffcode(code).orElse(new Staff());
+    @RequestMapping(value = "notification/{code}", method = RequestMethod.GET, produces = {"application/json"})
+    public Notification getStaffByCode(@PathVariable("code") String code) {
+        return notificationDAO.findByCode(code).orElse(new Notification());
     }
 
-    @RequestMapping(value = "staffs", method = RequestMethod.GET, produces = {"application/json"})
-    public List<Staff> getAll() {
-        return staffDAO.findAll();
+    @RequestMapping(value = "notifications", method = RequestMethod.GET, produces = {"application/json"})
+    public List<Notification> getAll() {
+        return notificationDAO.findAll();
     }
 
 
