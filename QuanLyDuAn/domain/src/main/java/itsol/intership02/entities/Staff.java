@@ -29,7 +29,6 @@ public class Staff {
     @Column(name = "STAFF_CODE")
     private String staffcode;
 
-
     @Column(name = "USERNAME")
     private String username;
 

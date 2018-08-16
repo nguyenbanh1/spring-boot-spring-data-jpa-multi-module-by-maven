@@ -17,9 +17,6 @@ public class Notification {
     @Column(name = "COMPANY_NOTIFICATION_NAME")
     private String name;
 
-    @Column(name = "MEDIA_ID")
-    private int mediaId;
-
     @Column(name = "STAFF_ID")
     private int staffId;
 
@@ -74,14 +71,6 @@ public class Notification {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getMediaId() {
-        return mediaId;
-    }
-
-    public void setMediaId(int mediaId) {
-        this.mediaId = mediaId;
     }
 
     public int getStaffId() {
