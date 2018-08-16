@@ -18,7 +18,7 @@ public class NotificationController {
     @Autowired
     private StaffDAO staffDAO;
 
-    @RequestMapping(value = "new_notification", method = RequestMethod.POST, produces = {"application/json"})
+    @RequestMapping(value = "/admin/notification/add", method = RequestMethod.POST, produces = {"application/json"})
     public void addNotification(@RequestBody Notification new_notification, @RequestHeader String code) {
 
 
@@ -29,19 +29,17 @@ public class NotificationController {
         new_notification.setDate_update(date);
         new_notification.setUser_update(staff_create);
         new_notification.setUser_created(staff_create);
-        new_notification.setStatus(true);
 
         notificationDAO.save(new_notification);
-
     }
 
 
-    @RequestMapping(value = "test/notification/{code}", method = RequestMethod.GET, produces = {"application/json"})
+    @RequestMapping(value = "/notification/{code}", method = RequestMethod.GET, produces = {"application/json"})
     public Notification getStaffByCode(@PathVariable("code") String code) {
         return notificationDAO.findByCode(code).orElse(new Notification());
     }
 
-    @RequestMapping(value = "test/notifications", method = RequestMethod.GET, produces = {"application/json"})
+    @RequestMapping(value = "/notifications", method = RequestMethod.GET, produces = {"application/json"})
     public List<Notification> getAll() {
         return notificationDAO.findAll();
     }

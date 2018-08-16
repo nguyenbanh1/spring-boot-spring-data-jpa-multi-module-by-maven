@@ -18,7 +18,7 @@ public class ConfAreaController {
 
 
     //them ConfArea chinguyen 15/8
-    @RequestMapping(value = "area/post",method = RequestMethod.POST,produces = {"application/json"})
+    @RequestMapping(value = "admin/area/post",method = RequestMethod.POST,produces = {"application/json"})
     public void postConfArea(@RequestBody Conf_Area newConfArea){//,@RequestHeader String code){
 
         //Staff staff_create = staffDAO.findByStaffcode(code).orElse(new Staff());

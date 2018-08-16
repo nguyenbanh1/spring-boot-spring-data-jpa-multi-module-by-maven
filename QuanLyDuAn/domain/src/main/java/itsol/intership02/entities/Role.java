@@ -11,7 +11,8 @@ public class Role {
 
     @Column(name = "ROLE_ID")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "RoleGenerator",sequenceName = "Role_Sequence")
+    @GeneratedValue(generator = "RoleGenerator" )
     private int id;
 
     @Column(name = "ROLE_CODE")

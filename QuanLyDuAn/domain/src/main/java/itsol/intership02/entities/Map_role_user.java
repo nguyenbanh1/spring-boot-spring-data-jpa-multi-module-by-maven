@@ -5,11 +5,12 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "MAP_ROLE_USER")
+@Table(name = "MAP_ROLE_STAFF")
 public class Map_role_user {
-    @Column(name = "ROLE_USER)ID")
+    @Column(name = "ROLE_USER_ID")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "Role_UserGenerator",sequenceName = "Role_User_sequence")
+    @GeneratedValue(generator = "Role_UserGenerator")
     private int id;
 
     @JoinColumn(name = "ROLE_ID")

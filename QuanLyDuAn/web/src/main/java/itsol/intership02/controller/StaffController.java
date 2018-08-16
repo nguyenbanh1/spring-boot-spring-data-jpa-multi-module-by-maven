@@ -16,8 +16,7 @@ public class StaffController {
     @Autowired
     private StaffDAO staffDAO;
 
-    //thêm dữ một list staff
-    @RequestMapping(value = "staffs",method = RequestMethod.POST,produces = {"application/json"})
+    @RequestMapping(value = "admin/staffs",method = RequestMethod.POST,produces = {"application/json"})
     public void postStaffs(@RequestBody List<Staff> staffs, @RequestHeader String code){
 
 
@@ -38,7 +37,7 @@ public class StaffController {
     }
 
     //them 1 staff vao DB
-    @RequestMapping(value = "staff",method = RequestMethod.POST,produces = {"application/json"})
+    @RequestMapping(value = "/admin/staff",method = RequestMethod.POST,produces = {"application/json"})
     public void postStaff(@RequestBody Staff new_staff,@RequestHeader String code){
 
 
@@ -55,14 +54,12 @@ public class StaffController {
 
     }
 
-
-
-    @RequestMapping(value = "staff/{code}",method = RequestMethod.GET,produces = {"application/json"})
+    @RequestMapping(value = "/staff/{code}",method = RequestMethod.GET,produces = {"application/json"})
     public Staff getStaffByCode(@PathVariable("code")String code){
         return staffDAO.findByStaffcode(code).orElse(new Staff());
     }
 
-    @RequestMapping(value = "staffs",method = RequestMethod.GET,produces = {"application/json"})
+    @RequestMapping(value = "/staffs",method = RequestMethod.GET,produces = {"application/json"})
     public List<Staff> getAll(){
         return staffDAO.findAll();
     }

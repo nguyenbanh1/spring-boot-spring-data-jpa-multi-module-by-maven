@@ -31,7 +31,6 @@ public class TokenAuthenticationService {
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
-        //res.addHeader("nguyen","tang khanh nguyen");
     }
 
     public  Authentication getAuthentication(HttpServletRequest request,ApplicationContext applicationContext) {
@@ -40,7 +39,7 @@ public class TokenAuthenticationService {
 
 
         String token = request.getHeader(HEADER_STRING);
-        //System.out.println(token);
+
         if (token != null) {
             // parse the token.
             String user = Jwts.parser()

@@ -9,7 +9,8 @@ import java.util.Date;
 public class Map_role_permissions {
     @Column(name = "MAP_ROLE_PERMISSIONS_ID")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "role_permissionGenerator",sequenceName = "role_permission_sequence")
+    @GeneratedValue(generator = "role_permissionGenerator")
     private int id;
 
     @JoinColumn(name = "ROLE_ID")

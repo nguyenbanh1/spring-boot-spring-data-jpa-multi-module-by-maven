@@ -10,11 +10,12 @@ import java.util.List;
 public class Staff {
 
     @Column(name = "STAFF_ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "StaffGenerator",sequenceName = "Staff_sequence")
+    @GeneratedValue(generator = "StaffGenerator")
     @Id
     private int id;
 
-    @OneToMany(mappedBy = "staff_id")
+    @OneToMany(mappedBy = "staff_id",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Map_role_user> map_role_userList = new ArrayList<Map_role_user>();
 
     @ManyToOne
@@ -22,12 +23,12 @@ public class Staff {
     private Conf_Area conf_area_id;
 
 
-    @ManyToOne
-    @JoinColumn(name = "MEDIA_ID")
-    private Media media_id;
+    @OneToMany(mappedBy = "staff")
+    private List<Media> mediaList = new ArrayList<Media>();
 
     @Column(name = "STAFF_CODE")
     private String staffcode;
+
 
     @Column(name = "USERNAME")
     private String username;
@@ -75,6 +76,8 @@ public class Staff {
     @Column(name = "DEGREE")
     private String degree;
 
+
+
     @ManyToOne
     @JoinColumn(name = "USER_CREATED")
     private Staff user_created;
@@ -111,6 +114,10 @@ public class Staff {
     private String position;
 
 
+    @OneToMany(mappedBy = "staff")
+    private List<Map_Staff_Notification> map_staff_notifications = new ArrayList<Map_Staff_Notification>();
+
+
     //------------------------------------------------
 
 
@@ -139,12 +146,12 @@ public class Staff {
         this.conf_area_id = conf_area_id;
     }
 
-    public Media getMedia_id() {
-        return media_id;
+    public List<Media> getMediaList() {
+        return mediaList;
     }
 
-    public void setMedia_id(Media media_id) {
-        this.media_id = media_id;
+    public void setMediaList(List<Media> mediaList) {
+        this.mediaList = mediaList;
     }
 
     public String getStaffcode() {

@@ -10,7 +10,8 @@ import java.util.List;
 public class Permissions {
     @Column(name = "PERMISSIONS_ID")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "PermissionGenerator",sequenceName = "permission_sequence")
+    @GeneratedValue(generator = "PermissionGenerator")
     private int id;
 
     @Column(name = "PERMISSIONS_CODE")

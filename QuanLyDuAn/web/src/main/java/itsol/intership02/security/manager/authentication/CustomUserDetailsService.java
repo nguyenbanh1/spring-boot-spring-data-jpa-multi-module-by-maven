@@ -20,7 +20,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Staff staff = staffDAO.findByUsername(username).orElse(new Staff());
 
-		System.out.println("in configure");
 
 		CustomUserDetails userDetails = null;
 		if (staff != null) {

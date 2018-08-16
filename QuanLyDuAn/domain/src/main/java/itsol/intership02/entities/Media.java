@@ -10,7 +10,8 @@ public class Media
 
         @Column(name = "MEDIA_ID")
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @SequenceGenerator(name = "MediaGenerator",sequenceName = "media_sequence")
+        @GeneratedValue(generator = "MediaGenerator")
         private int id;
 
         @Column(name = "MEDIA_CODE")
@@ -22,6 +23,11 @@ public class Media
 
         @Column(name = "STATUS")
         private boolean status;
+
+
+        @ManyToOne
+        @JoinColumn(name = "STAFF_ID")
+        private Staff staff;
 
         @ManyToOne
         @JoinColumn(name = "USER_CREATED")
@@ -44,7 +50,15 @@ public class Media
         @Column(name = "MEDIA_NAME")
         private String name;
 
-        public int getId() {
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
+    public int getId() {
             return id;
         }
 

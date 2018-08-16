@@ -7,9 +7,10 @@ import java.util.Date;
 @Table(name = "CONF_AREA")
 public class Conf_Area {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name = "CONF_AREA_ID")
+    @SequenceGenerator(name = "ConfArea_Generator",sequenceName = "conf_area_sequence")
+    @GeneratedValue(generator = "ConfArea_Generator")
     private int conf_area_id;
 
     @Column(name = "CONF_AREA_CODE")

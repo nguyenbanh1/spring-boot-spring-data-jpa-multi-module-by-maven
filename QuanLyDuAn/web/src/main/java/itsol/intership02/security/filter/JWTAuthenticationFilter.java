@@ -26,12 +26,7 @@ public class JWTAuthenticationFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-
-
-
         Authentication authentication = new TokenAuthenticationService().getAuthentication((HttpServletRequest) servletRequest,applicationContext);
-        System.out.println("authentication :" + authentication.getAuthorities());
-
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(servletRequest, servletResponse);

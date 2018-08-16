@@ -22,11 +22,6 @@ public class LoginController {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    @RequestMapping(value = "/login" , method = RequestMethod.POST,produces = {"application/json"})
-    public String login(){
-        return "success";
-    }
-
 
     @RequestMapping(value = "/register",method = RequestMethod.POST,produces = {"application/json"})
     public ResponseEntity<?> register(@RequestBody Staff staff){
@@ -62,5 +57,6 @@ public class LoginController {
         return ResponseEntity.accepted().headers(httpHeaders).build();
 
     }
+
 
 }
