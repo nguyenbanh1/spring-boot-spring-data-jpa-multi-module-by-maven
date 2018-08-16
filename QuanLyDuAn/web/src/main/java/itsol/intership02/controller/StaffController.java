@@ -16,8 +16,6 @@ public class StaffController {
     @Autowired
     private StaffDAO staffDAO;
 
-
-
     //thêm dữ một list staff
     @RequestMapping(value = "staffs",method = RequestMethod.POST,produces = {"application/json"})
     public void postStaffs(@RequestBody List<Staff> staffs, @RequestHeader String code){
