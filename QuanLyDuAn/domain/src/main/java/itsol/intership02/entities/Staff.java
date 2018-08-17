@@ -7,6 +7,26 @@ import java.util.List;
 
 @Entity
 @Table(name = "STAFF")
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "getbycode",
+                procedureName = "PGK_STAFF.get_one_staff",
+                resultClasses = Staff.class,
+                parameters = {
+                        @StoredProcedureParameter(name = "o_res",mode = ParameterMode.REF_CURSOR,type = void.class),
+                        @StoredProcedureParameter(name = "p_staff_code",mode = ParameterMode.IN,type = String.class)
+                }
+        ),
+        @NamedStoredProcedureQuery(
+                name = "getall",
+                procedureName = "PGK_STAFF.get_all_staff",
+                resultClasses = Staff.class,
+                parameters = {
+                        @StoredProcedureParameter(name = "o_res",mode = ParameterMode.REF_CURSOR,type = void.class)
+                }
+
+        )
+})
 public class Staff {
 
     @Column(name = "STAFF_ID")
