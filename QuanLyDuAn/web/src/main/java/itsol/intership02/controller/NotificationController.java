@@ -5,6 +5,8 @@ import itsol.intership02.dao.StaffDAO;
 import itsol.intership02.entities.Notification;
 import itsol.intership02.entities.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -19,7 +21,7 @@ public class NotificationController {
     private StaffDAO staffDAO;
 
     @RequestMapping(value = "/admin/notification/add", method = RequestMethod.POST, produces = {"application/json"})
-    public void addNotification(@RequestBody Notification new_notification, @RequestHeader String code) {
+    public ResponseEntity<?> addNotification(@RequestBody Notification new_notification, @RequestHeader String code) {
 
 
         Staff staff_create = staffDAO.findByStaffcode(code).orElse(new Staff());
@@ -31,7 +33,19 @@ public class NotificationController {
         new_notification.setUser_created(staff_create);
 
         notificationDAO.save(new_notification);
+
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+
+        if (new_notification == null || new_notification.getCode() == null || new_notification.getContent() == null) {
+            httpHeaders.add("status", "fail");
+            httpHeaders.add("message", "Code or content is null");
+            return ResponseEntity.noContent().headers(httpHeaders).build();
+        }
+
+        return null;
     }
+
 
 
     @RequestMapping(value = "/notification/{code}", method = RequestMethod.GET, produces = {"application/json"})
