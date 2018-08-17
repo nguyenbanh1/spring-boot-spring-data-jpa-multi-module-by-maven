@@ -9,7 +9,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.RequestMethod;
+import javax.persistence.EntityManager;
+import javax.persistence.StoredProcedureQuery;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +20,8 @@ public class StaffController {
 
     @Autowired
     private StaffDAO staffDAO;
+    @Autowired
+    private EntityManager entityManager;
 
 // chinguyen16/08
 
@@ -51,12 +55,12 @@ public class StaffController {
             httpHeaders.add("message","error");
             return ResponseEntity.noContent().headers(httpHeaders).build();
         }
-        // Staff staff_create = staffDAO.findByStaffcode(code).orElse(new Staff());
+         Staff staff_create = staffDAO.findByStaffcode(code).orElse(new Staff());
         Date date = new Date();
         new_staff.setDate_created(date);
         new_staff.setDate_update(date);
         //new_staff.setUser_update(staff_create);
-        //.setUser_created(staff_create);
+        new_staff.setUser_created(staff_create);
         new_staff.setStatus(true);
 
         staffDAO.save(new_staff);
@@ -108,14 +112,24 @@ public class StaffController {
 
 
 
-    @RequestMapping(value = "test/staff/{code}",method = RequestMethod.GET,produces = {"application/json"})
+    @RequestMapping(value = "/test/staff/{code}",method = RequestMethod.GET,produces = {"application/json"})
     public Staff getStaffByCode(@PathVariable("code")String code){
-        return staffDAO.findByStaffcode(code).orElse(new Staff());
+        System.out.print("in get staff");
+        StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("getbycode");
+        if(query == null){
+            System.out.print("oke null");
+        }
+        query.setParameter("p_staff_code",code);
+        query.execute();
+        return (Staff) query.getSingleResult();
     }
-
+    //get all xong
     @RequestMapping(value = "test/staffs",method = RequestMethod.GET,produces = {"application/json"})
     public List<Staff> getAll(){
-        return staffDAO.findAll();
+        StoredProcedureQuery query = entityManager.createNamedStoredProcedureQuery("getall");
+        query.execute();
+        List<Staff> staffs=query.getResultList();
+       return staffs;
     }
 
 
