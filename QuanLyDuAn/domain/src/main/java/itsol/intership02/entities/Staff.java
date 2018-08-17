@@ -76,9 +76,9 @@ public class Staff {
     private String tax_code;
 
 
-    @Column(name = "DEGREE")
+    @Column(name = "STAFF_DEGREE")
     private String degree;
-    
+
     @ManyToOne
     @JoinColumn(name = "USER_CREATED")
     private Staff user_created;
