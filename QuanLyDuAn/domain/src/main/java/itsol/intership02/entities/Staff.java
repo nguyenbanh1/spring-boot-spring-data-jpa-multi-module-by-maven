@@ -29,6 +29,9 @@ public class Staff {
     @Column(name = "STAFF_CODE")
     private String staffcode;
 
+    @Column(name="STAFF_NAME")
+    private String staffName;
+
 
     @Column(name = "USERNAME")
     private String username;
@@ -75,9 +78,7 @@ public class Staff {
 
     @Column(name = "DEGREE")
     private String degree;
-
-
-
+    
     @ManyToOne
     @JoinColumn(name = "USER_CREATED")
     private Staff user_created;
