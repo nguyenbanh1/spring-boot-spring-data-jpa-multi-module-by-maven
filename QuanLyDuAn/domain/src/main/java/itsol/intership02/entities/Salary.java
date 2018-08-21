@@ -16,7 +16,7 @@ public class Salary {
 
     @Column(name = "CYCLE_ID")
     @ManyToOne
-    private CYCLE cycleId;
+    private Cycle cycleId;
 
     @Column (name = "COMPANY_ID")
     @ManyToOne
@@ -65,7 +65,7 @@ public class Salary {
 
     @Column(name = "CONTRACT_ID")
     @ManyToOne
-     private  Contract contractId;
+    private  Contract contractId;
 
     @Column(name = "SALARY_NAME")
     private  String salaryName;
@@ -79,11 +79,12 @@ public class Salary {
         this.id = id;
     }
 
-    public CYCLE getCycleId() {
+
+    public Cycle getCycleId() {
         return cycleId;
     }
 
-    public void setCycleId(CYCLE cycleId) {
+    public void setCycleId(Cycle cycleId) {
         this.cycleId = cycleId;
     }
 

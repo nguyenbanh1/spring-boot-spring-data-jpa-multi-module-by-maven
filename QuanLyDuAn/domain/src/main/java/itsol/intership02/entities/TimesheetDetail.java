@@ -1,7 +1,6 @@
 package itsol.intership02.entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 @Entity
 @Table(name = "TIMESHEET_DETAIL")
