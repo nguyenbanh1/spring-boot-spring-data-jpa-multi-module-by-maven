@@ -3,6 +3,9 @@ package itsol.intership02.entities;
 import javax.persistence.*;
 import java.util.Date;
 
+
+@Entity
+@Table(name="SALARY")
 public class Salary {
 
     @Id
@@ -12,12 +15,15 @@ public class Salary {
     private int id;
 
     @Column(name = "CYCLE_ID")
+    @ManyToOne
     private CYCLE cycleId;
 
     @Column (name = "COMPANY_ID")
+    @ManyToOne
     private Company companyId;
 
     @Column(name = "STAFF_ID")
+    @ManyToOne
     private Staff staffId;
 
     @Column(name = "ACTUAL_NUMBER_WORK_DATE")
@@ -58,6 +64,7 @@ public class Salary {
     private Date date_update;
 
     @Column(name = "CONTRACT_ID")
+    @ManyToOne
      private  Contract contractId;
 
     @Column(name = "SALARY_NAME")

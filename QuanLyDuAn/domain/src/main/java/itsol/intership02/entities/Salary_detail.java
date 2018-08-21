@@ -14,6 +14,7 @@ public class Salary_detail {
     private int id;
 
     @Column(name = "SALARY_ID")
+    @ManyToOne
     private Salary salaryId;
 
     @Column(name = "START_DATE")
