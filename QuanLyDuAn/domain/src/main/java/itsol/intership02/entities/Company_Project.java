@@ -10,6 +10,7 @@ public class Company_Project {
     @Column(name = "COMPANY_PROJECT_ID")
     @SequenceGenerator(name = "Project_Generator",sequenceName = "company_project_seq",allocationSize = 9999)
     @GeneratedValue(generator = "Project_Generator")
+    @Id
     private int id;
 
 
@@ -23,7 +24,8 @@ public class Company_Project {
     @JoinColumn(name = "STAFF_ID")
     private Staff staff_id;
 
-    @Column(name = "COMPANY_ID")
+    @ManyToOne
+    @JoinColumn(name = "COMPANY_ID")
     private Company company_id;
 
     @Column(name = "SCHEDULE_START_TIME")

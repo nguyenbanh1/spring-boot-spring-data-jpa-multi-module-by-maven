@@ -14,7 +14,7 @@ public class Configuration_detail {
 
     @ManyToOne
     @JoinColumn(name="CONFIGURATION_ID")
-    private int configuration_id;
+    private Configuration_master configuration_id;
 
     @Column(name="CONFIGURATION_DETAIL_CODE")
     private String configuration_detail_code;
@@ -31,12 +31,10 @@ public class Configuration_detail {
     @Column(name="DATE_UPDATE")
     private Date date_update;
 
-    @ManyToOne
-    @JoinColumn(name="USER_CREATED")
+    @Column(name="USER_CREATED")
     private int user_created;
 
-    @ManyToOne
-    @JoinColumn(name="USER_UPDATE")
+    @Column(name="USER_UPDATE")
     private int user_update;
 
     @Column(name="DESCRIPTION")
@@ -44,7 +42,7 @@ public class Configuration_detail {
 
     @ManyToOne
     @JoinColumn(name="APPLY_FOR_DETAIL_ID")
-    private int apply_for_detail_id;
+    private ApplyForDetail apply_for_detail_id;
 
 
     public int getConfiguration_detail_id() {
@@ -55,12 +53,20 @@ public class Configuration_detail {
         this.configuration_detail_id = configuration_detail_id;
     }
 
-    public int getConfiguration_id() {
+    public Configuration_master getConfiguration_id() {
         return configuration_id;
     }
 
-    public void setConfiguration_id(int configuration_id) {
+    public void setConfiguration_id(Configuration_master configuration_id) {
         this.configuration_id = configuration_id;
+    }
+
+    public ApplyForDetail getApply_for_detail_id() {
+        return apply_for_detail_id;
+    }
+
+    public void setApply_for_detail_id(ApplyForDetail apply_for_detail_id) {
+        this.apply_for_detail_id = apply_for_detail_id;
     }
 
     public String getConfiguration_detail_code() {
@@ -127,11 +133,6 @@ public class Configuration_detail {
         this.description = description;
     }
 
-    public int getApply_for_detail_id() {
-        return apply_for_detail_id;
-    }
 
-    public void setApply_for_detail_id(int apply_for_detail_id) {
-        this.apply_for_detail_id = apply_for_detail_id;
-    }
+
 }

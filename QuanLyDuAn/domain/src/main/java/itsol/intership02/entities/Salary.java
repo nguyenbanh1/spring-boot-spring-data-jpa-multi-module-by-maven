@@ -14,15 +14,15 @@ public class Salary {
     @Column(name = "SALARY")
     private int id;
 
-    @Column(name = "CYCLE_ID")
+    @JoinColumn(name = "CYCLE_ID")
     @ManyToOne
     private Cycle cycleId;
 
-    @Column (name = "COMPANY_ID")
+    @JoinColumn (name = "COMPANY_ID")
     @ManyToOne
     private Company companyId;
 
-    @Column(name = "STAFF_ID")
+    @JoinColumn(name = "STAFF_ID")
     @ManyToOne
     private Staff staffId;
 
@@ -63,7 +63,7 @@ public class Salary {
     @Column(name = "DATE_UPDATED")
     private Date date_update;
 
-    @Column(name = "CONTRACT_ID")
+    @JoinColumn(name = "CONTRACT_ID")
     @ManyToOne
     private  Contract contractId;
 

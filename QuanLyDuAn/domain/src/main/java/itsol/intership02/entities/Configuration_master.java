@@ -1,7 +1,6 @@
 package itsol.intership02.entities;
 
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 import java.util.Date;
 
@@ -23,12 +22,10 @@ public class Configuration_master {
     @Column(name="STATUS")
     private boolean status;
 
-    @ManyToOne
-    @JoinColumn(name="USER_CREATED")
+    @Column(name="USER_CREATED")
     private int user_created;
 
-    @ManyToOne
-    @JoinColumn(name="USER_UPDATE")
+    @Column(name="USER_UPDATE")
     private int user_update;
 
     @Column (name="DATE_CREATED")

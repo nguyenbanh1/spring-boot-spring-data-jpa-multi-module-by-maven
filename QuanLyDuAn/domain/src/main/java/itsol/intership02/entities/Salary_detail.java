@@ -13,7 +13,7 @@ public class Salary_detail {
     @Column(name = "SALARY_DETAIL_ID")
     private int id;
 
-    @Column(name = "SALARY_ID")
+    @JoinColumn(name = "SALARY_ID")
     @ManyToOne
     private Salary salaryId;
 

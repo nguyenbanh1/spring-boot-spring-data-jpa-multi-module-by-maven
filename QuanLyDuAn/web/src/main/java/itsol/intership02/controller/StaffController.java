@@ -4,17 +4,19 @@ package itsol.intership02.controller;
 
 import itsol.intership02.dao.StaffDAO;
 import itsol.intership02.entities.Staff;
+import itsol.intership02.entities.StaffTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.method.P;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.persistence.EntityManager;
 import javax.persistence.StoredProcedureQuery;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
+@CrossOrigin
 @RestController
 public class StaffController {
 
@@ -130,6 +132,45 @@ public class StaffController {
         query.execute();
         List<Staff> staffs=query.getResultList();
        return staffs;
+    }
+
+
+    @RequestMapping(value = "/test/getAll",method = RequestMethod.GET,produces = {"application/json"})
+    public ResponseEntity<Object> getAllStaff(){
+
+        StaffTest staffTest = new StaffTest();
+        staffTest.setId(1);
+        staffTest.setName("Phuong");
+        staffTest.setBirthday("4/2/1997");
+        staffTest.setDegree("tot tai nong lam");
+        staffTest.setGender(0);
+        staffTest.setEmail("phuongnhaidau@gmail.com");
+        staffTest.setPhone("12321312312");
+
+        staffTest.setLookStatus(1);
+
+
+        StaffTest staffTest1 = new StaffTest();
+        staffTest1.setId(2);
+        staffTest1.setName("Lài điên");
+        staffTest1.setBirthday("4/2/1997");
+        staffTest1.setDegree("tot tai nong lam");
+        staffTest1.setGender(0);
+        staffTest1.setEmail("laidien@gmail.com");
+        staffTest1.setPhone("12321312312");
+        staffTest1.setLookStatus(1);
+
+
+
+        List<StaffTest> staffTests = new ArrayList<>();
+        staffTests.add(staffTest);
+        staffTests.add(staffTest1);
+
+
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.add("authentication", "lai dien");
+
+        return new ResponseEntity(staffTests,responseHeaders,HttpStatus.OK);
     }
 
 

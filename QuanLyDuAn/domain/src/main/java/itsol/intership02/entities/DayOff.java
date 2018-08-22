@@ -12,7 +12,7 @@ public class DayOff {
     private int id;
 
     @Column(name = "DAY_OFF_CODE")
-    private System code;
+    private String code;
 
     @Column(name = "DAY_OFF_TYPE")
     private boolean type;
@@ -43,11 +43,11 @@ public class DayOff {
         this.id = id;
     }
 
-    public System getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(System code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

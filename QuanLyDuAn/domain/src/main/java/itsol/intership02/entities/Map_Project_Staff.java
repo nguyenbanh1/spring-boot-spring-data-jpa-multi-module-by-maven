@@ -10,6 +10,7 @@ public class Map_Project_Staff {
     @Column(name = "MAP_PROJECT_STAFF_ID")
     @SequenceGenerator(name = "project_staff_Generator",sequenceName = "map_project_staff_seq",allocationSize = 9999)
     @GeneratedValue(generator = "project_staff_Generator")
+    @Id
     private int id;
 
     @ManyToOne
