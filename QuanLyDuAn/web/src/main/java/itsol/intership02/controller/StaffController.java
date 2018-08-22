@@ -97,7 +97,7 @@ public class StaffController {
 
 
     //delete 1 staff
-    @RequestMapping(value = "test/staff/delete={code}",method = RequestMethod.POST,produces = {"application/json"})
+   @RequestMapping(value = "test/staff/delete/{code}",method = RequestMethod.POST,produces = {"application/json"})
     public ResponseEntity<?>  deleteStaff(@PathVariable("code")String code,@RequestHeader String code2){
         HttpHeaders httpHeaders = new HttpHeaders();
         if (code2==null){
@@ -172,6 +172,8 @@ public class StaffController {
 
         return new ResponseEntity(staffTests,responseHeaders,HttpStatus.OK);
     }
+
+
 
 
 }

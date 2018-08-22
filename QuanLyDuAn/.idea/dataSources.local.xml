@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="@www1.itsol.vn" uuid="b718a129-6f7b-4452-b679-5221883e704b">
+    <data-source name="@www1.itsol.vn" uuid="ba93b3dd-645b-4b0d-89cb-46e523c0ac9e">
       <database-info product="Oracle" version="Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production&#10;With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0">
         <extra-name-characters>$#</extra-name-characters>
         <identifier-quote-string>&quot;</identifier-quote-string>
@@ -9,7 +9,6 @@
       <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>INTERN_02</user-name>
-      <introspection-schemas>*:INTERN_02</introspection-schemas>
     </data-source>
   </component>
 </project>

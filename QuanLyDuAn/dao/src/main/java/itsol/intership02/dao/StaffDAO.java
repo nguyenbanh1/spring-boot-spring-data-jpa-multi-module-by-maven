@@ -17,7 +17,7 @@ public interface StaffDAO extends JpaRepository<Staff,Integer> {
 
     boolean existsByUsername(String username);
 
-    @Procedure(procedureName = "pgk_staff.delete_staff ")
+    @Procedure(procedureName = "pgk_staff.delete_staff")
     void deleteStaff(@Param("p_staff_code") String p_staff_id, @Param("p_person_update")String p_person_update);
 
 
