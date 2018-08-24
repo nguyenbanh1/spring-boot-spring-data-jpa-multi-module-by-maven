@@ -30,17 +30,17 @@ import java.util.List;
 public class Staff {
 
     @Column(name = "STAFF_ID")
-    @SequenceGenerator(name = "StaffGenerator",sequenceName = "Staff_sequence")
+    @SequenceGenerator(name = "StaffGenerator",sequenceName = "STAFF_SEQUENCE")
     @GeneratedValue(generator = "StaffGenerator")
     @Id
     private int id;
 
-    @OneToMany(mappedBy = "staff_id",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "staff_id",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Map_role_user> map_role_userList = new ArrayList<Map_role_user>();
 
-    @ManyToOne
-    @JoinColumn(name = "CONF_AREA_ID")
-    private Conf_Area conf_area_id;
+//    @ManyToOne
+//    @JoinColumn(name = "CONF_AREA_ID")
+//    private Conf_Area conf_area_id;
 
 
     @OneToMany(mappedBy = "staff")
@@ -99,13 +99,13 @@ public class Staff {
     @Column(name = "STAFF_DEGREE")
     private String degree;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_CREATED")
-    private Staff user_created;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_UPDATE")
-    private Staff user_update;
+    @Column(name = "USER_CREATED")
+    private int user_created;
+
+
+    @Column(name = "USER_UPDATE")
+    private int user_update;
 
     @Column(name = "DATE_CREATED")
     private Date date_created;
@@ -159,13 +159,13 @@ public class Staff {
     }
 
 
-    public Conf_Area getConf_area_id() {
-        return conf_area_id;
-    }
-
-    public void setConf_area_id(Conf_Area conf_area_id) {
-        this.conf_area_id = conf_area_id;
-    }
+//    public Conf_Area getConf_area_id() {
+//        return conf_area_id;
+//    }
+//
+//    public void setConf_area_id(Conf_Area conf_area_id) {
+//        this.conf_area_id = conf_area_id;
+//    }
 
     public List<Media> getMediaList() {
         return mediaList;
@@ -303,22 +303,6 @@ public class Staff {
         this.degree = degree;
     }
 
-    public Staff getUser_created() {
-        return user_created;
-    }
-
-    public void setUser_created(Staff user_created) {
-        this.user_created = user_created;
-    }
-
-    public Staff getUser_update() {
-        return user_update;
-    }
-
-    public void setUser_update(Staff user_update) {
-        this.user_update = user_update;
-    }
-
     public Date getDate_created() {
         return date_created;
     }
@@ -389,5 +373,37 @@ public class Staff {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getStaffName() {
+        return staffName;
+    }
+
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
+    }
+
+    public int getUser_created() {
+        return user_created;
+    }
+
+    public void setUser_created(int user_created) {
+        this.user_created = user_created;
+    }
+
+    public List<Map_Staff_Notification> getMap_staff_notifications() {
+        return map_staff_notifications;
+    }
+
+    public void setMap_staff_notifications(List<Map_Staff_Notification> map_staff_notifications) {
+        this.map_staff_notifications = map_staff_notifications;
+    }
+
+    public int getUser_update() {
+        return user_update;
+    }
+
+    public void setUser_update(int user_update) {
+        this.user_update = user_update;
     }
 }

@@ -24,15 +24,6 @@ public class Role {
     @OneToMany(mappedBy = "role_id")
     private List<Map_role_user> map_role_userList = new ArrayList<Map_role_user>();
 
-
-    @OneToMany(mappedBy = "role_id")
-    private List<Map_role_permissions> map_role_permissionsList = new ArrayList<Map_role_permissions>();
-
-
-
-
-
-
     @ManyToOne
     @JoinColumn(name = "USER_CREATED")
     private Staff user_created;
@@ -60,13 +51,7 @@ public class Role {
         this.map_role_userList = map_role_userList;
     }
 
-    public List<Map_role_permissions> getMap_role_permissionsList() {
-        return map_role_permissionsList;
-    }
 
-    public void setMap_role_permissionsList(List<Map_role_permissions> map_role_permissionsList) {
-        this.map_role_permissionsList = map_role_permissionsList;
-    }
 
     public int getId() {
         return id;

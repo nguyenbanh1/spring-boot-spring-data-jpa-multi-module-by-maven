@@ -50,19 +50,21 @@ public class StaffController {
 
     //them 1 staff vao DB
     @RequestMapping(value = "test/staff",method = RequestMethod.POST,produces = {"application/json"})
-    public ResponseEntity<?> postStaff(@RequestBody Staff new_staff,@RequestHeader String code){
+    public ResponseEntity<?> postStaff(@RequestBody Staff new_staff,@RequestHeader int id){
         HttpHeaders httpHeaders = new HttpHeaders();
         if(new_staff==null){
             httpHeaders.add("status","fail");
             httpHeaders.add("message","error");
             return ResponseEntity.noContent().headers(httpHeaders).build();
         }
-         Staff staff_create = staffDAO.findByStaffcode(code).orElse(new Staff());
+       // Staff staff_create = staffDAO.findByStaffcode(code).orElse(new Staff());
         Date date = new Date();
         new_staff.setDate_created(date);
-        new_staff.setDate_update(date);
+        //new_staff.setDate_update(date);
         //new_staff.setUser_update(staff_create);
-        new_staff.setUser_created(staff_create);
+        //.out.print(staff_create.getId());
+        //new_staff.setUser_created(staff_create.getId());
+        new_staff.setUser_created(id);
         new_staff.setStatus(true);
 
         staffDAO.save(new_staff);
@@ -73,22 +75,22 @@ public class StaffController {
     }
 
     //update 1 staff
-    @RequestMapping(value = "test/staff/edit={code}",method = RequestMethod.POST,produces = {"application/json"})
-    public ResponseEntity<?> updateStaff(@RequestBody Staff updateInfo, @PathVariable("code") String code){//,@RequestHeader String code){
+    @RequestMapping(value = "test/staff/edit/{code}",method = RequestMethod.POST,produces = {"application/json"})
+    public ResponseEntity<?> updateStaff(@RequestBody Staff updatedStaff, @PathVariable("code") String code){//,@RequestHeader String code){
         HttpHeaders httpHeaders = new HttpHeaders();
         Staff staffUpdate = staffDAO.findByStaffcode(code).orElse(new Staff());
-        if(staffUpdate==null||updateInfo==null)
+        if(staffUpdate==null||updatedStaff==null)
         {
             httpHeaders.add("status","fail");
             httpHeaders.add("message","error");
             return ResponseEntity.noContent().headers(httpHeaders).build();
         }
         Date date = new Date();
+        updatedStaff.setDate_update(date);
+        updatedStaff.setUser_update(staffUpdate.getId());
+        //updateStaff.setUser_update(staffUpdate);
 
-        staffUpdate.setDate_update(date);
-        //updateStaff.setUser_update(stafUpdate);
-
-        staffDAO.save(staffUpdate);
+        staffDAO.save(updatedStaff);
 
         httpHeaders.add("status" , "success");
 
