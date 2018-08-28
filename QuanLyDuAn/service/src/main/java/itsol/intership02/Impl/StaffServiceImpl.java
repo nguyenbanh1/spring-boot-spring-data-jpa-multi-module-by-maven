@@ -15,12 +15,12 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public List<Object> getOne(List params) {
-        return null;
+        return genericRepository.getEntityFromPackage("PGK_STAFF.get_one_staff",params);
     }
 
     @Override
     public List<Object> getAll(List params) {
-        return genericRepository.getEntityFromPackage("pgk_staff.get_all_staff",params);
+        return genericRepository.getEntityFromPackage("PGK_STAFF.get_all_staff",params);
     }
 
     @Override

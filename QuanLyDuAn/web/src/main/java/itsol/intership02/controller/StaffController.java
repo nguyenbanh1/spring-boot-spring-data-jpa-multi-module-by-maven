@@ -88,15 +88,16 @@ public class StaffController {
 
 
     @RequestMapping(value = "/test/staff/{code}",method = RequestMethod.GET,produces = {"application/json"})
-    public Staff getStaffByCode(@PathVariable("code")String code){
-        return null;
+    public ResponseEntity<Object>  getStaffByCode(@PathVariable("code")String code){
+       List param= Arrays.asList(code);
+       List<Object> list= staffService.getOne(param);
+        return new ResponseEntity<>(list,HttpStatus.ACCEPTED);
     }
 
 
-    @RequestMapping(value = "/staff/all",method = RequestMethod.GET,produces = {"application/json"})
-    public ResponseEntity<Object> getAllStaff(
-            @RequestParam(value = "code",required = false) String code,
-            @RequestParam(value = "name",required = false) String name)
+    @RequestMapping(value = "test/staff/all",method = RequestMethod.GET,produces = {"application/json"})
+    public ResponseEntity<Object> getAllStaff(@RequestParam(value = "code",required = false) String code,
+    @RequestParam(value = "name",required = false) String name)
     {
 
         List param = Arrays.asList(code,name);
