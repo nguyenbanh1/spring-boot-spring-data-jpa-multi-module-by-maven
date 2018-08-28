@@ -11,5 +11,5 @@ public interface StaffService {
     void update (Staff staff);
     void delete (List params);
     void insert (Staff staff);
-
+    Staff findbyStaffcode(String Staffcode);
 }
