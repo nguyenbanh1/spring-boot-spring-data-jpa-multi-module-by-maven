@@ -1,32 +1,33 @@
 package itsol.intership02.entities;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "STAFF")
-@NamedStoredProcedureQueries({
-        @NamedStoredProcedureQuery(
-                name = "getbycode",
-                procedureName = "PGK_STAFF.get_one_staff",
-                resultClasses = Staff.class,
-                parameters = {
-                        @StoredProcedureParameter(name = "o_res",mode = ParameterMode.REF_CURSOR,type = void.class),
-                        @StoredProcedureParameter(name = "p_staff_code",mode = ParameterMode.IN,type = String.class)
-                }
-        ),
-        @NamedStoredProcedureQuery(
-                name = "getall",
-                procedureName = "PGK_STAFF.get_all_staff",
-                resultClasses = Staff.class,
-                parameters = {
-                        @StoredProcedureParameter(name = "o_res",mode = ParameterMode.REF_CURSOR,type = void.class)
-                }
-
-        )
-})
+//@NamedStoredProcedureQueries({
+//        @NamedStoredProcedureQuery(
+//                name = "getbycode",
+//                procedureName = "PGK_STAFF.get_one_staff",
+//                resultClasses = Staff.class,
+//                parameters = {
+//                        @StoredProcedureParameter(name = "o_res",mode = ParameterMode.REF_CURSOR,type = void.class),
+//                        @StoredProcedureParameter(name = "p_staff_code",mode = ParameterMode.IN,type = String.class)
+//                }
+//        ),
+//        @NamedStoredProcedureQuery(
+//                name = "getall",
+//                procedureName = "PGK_STAFF.get_all_staff",
+//                resultClasses = Staff.class,
+//                parameters = {
+//                        @StoredProcedureParameter(name = "o_res",mode = ParameterMode.REF_CURSOR,type = void.class)
+//                }
+//
+//        )
+//})
 public class Staff {
 
     @Column(name = "STAFF_ID")
@@ -63,6 +64,7 @@ public class Staff {
     private boolean gender;
 
     @Column(name = "DATE_OF_BIRTH")
+    @Temporal(TemporalType.DATE)
     private Date date_of_birth;
 
 
@@ -77,7 +79,8 @@ public class Staff {
     private String indetification_card;
 
     @Column(name = "DATE_OF_ISSUE")
-    private String date_of_issue;
+    @Temporal(TemporalType.DATE)
+    private Date date_of_issue;
 
     @Column(name = "PLACE_OF_ISSUE")
     private String place_of_issue;
@@ -108,9 +111,11 @@ public class Staff {
     private int user_update;
 
     @Column(name = "DATE_CREATED")
+    @Temporal(TemporalType.DATE)
     private Date date_created;
 
     @Column(name = "DATE_UPDATE")
+    @Temporal(TemporalType.DATE)
     private Date date_update;
 
     @Column(name = "NUM_LOGIN_FAIL")
@@ -120,12 +125,15 @@ public class Staff {
     private boolean look_status;
 
     @Column(name = "START_PROBATIONARY_PERIO")
+    @Temporal(TemporalType.DATE)
     private Date start_probationary_perio;
 
     @Column(name = "START_WORKING_DAY")
+    @Temporal(TemporalType.DATE)
     private Date start_working_day;
 
     @Column(name = "END_WORKING_DAY")
+    @Temporal(TemporalType.DATE)
     private Date end_working_day;
 
     @Column(name = "STATUS")
@@ -247,13 +255,6 @@ public class Staff {
         this.indetification_card = indetification_card;
     }
 
-    public String getDate_of_issue() {
-        return date_of_issue;
-    }
-
-    public void setDate_of_issue(String date_of_issue) {
-        this.date_of_issue = date_of_issue;
-    }
 
     public String getPlace_of_issue() {
         return place_of_issue;
@@ -307,17 +308,11 @@ public class Staff {
         return date_created;
     }
 
-    public void setDate_created(Date date_created) {
-        this.date_created = date_created;
-    }
 
     public Date getDate_update() {
         return date_update;
     }
 
-    public void setDate_update(Date date_update) {
-        this.date_update = date_update;
-    }
 
     public int getNum_login_fail() {
         return num_login_fail;
@@ -333,6 +328,23 @@ public class Staff {
 
     public void setLook_status(boolean look_status) {
         this.look_status = look_status;
+    }
+
+
+    public Date getDate_of_issue() {
+        return date_of_issue;
+    }
+
+    public void setDate_of_issue(Date date_of_issue) {
+        this.date_of_issue = date_of_issue;
+    }
+
+    public void setDate_created(Date date_created) {
+        this.date_created = date_created;
+    }
+
+    public void setDate_update(Date date_update) {
+        this.date_update = date_update;
     }
 
     public Date getStart_probationary_perio() {
