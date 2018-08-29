@@ -1,11 +1,14 @@
 package itsol.intership02.Impl;
 
+import Utils.StringUtil;
 import exception.DataNotFoundException;
+import exception.NoInputDataException;
 import itsol.intership02.StaffService;
 import itsol.intership02.dao.StaffDAO;
 import itsol.intership02.entities.Staff;
 import itsol.intership02.generic.GenericRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -47,6 +50,10 @@ public class StaffServiceImpl implements StaffService {
         return staffDAO.findByStaffcode(staffCode);
     }
 
+    @Override
+    public boolean existsByStaffCode(String staffCode) {
+        return staffDAO.existsByStaffcode(staffCode);
+    }
 
 
     @Override
@@ -62,7 +69,19 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public void insert(Staff staff) {
+    public boolean insert(Staff staff) {
+        String staffcode = staff.getStaffcode();
+        if(existsByStaffCode(staffcode))
+        {
+            throw new DuplicateKeyException("trùng staff code ");
+        }
+        if(StringUtil.isNullOrEmpty(staff.getStaffName())||
+                StringUtil.isNullOrEmpty(staff.getEmail())||
+                StringUtil.isNullOrEmpty(staff.getPhone_number())
 
+        )
+            throw new NoInputDataException("lỗi trống");
+        staffDAO.save(staff);
+        return true;
     }
 }

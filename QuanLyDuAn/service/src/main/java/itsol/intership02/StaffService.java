@@ -10,6 +10,7 @@ public interface StaffService {
     List<Object> getAllStaff(List params);
     void saveOrUpdate (Staff staff);
     void delete (List params);
-    void insert (Staff staff);
+    boolean insert (Staff staff);
     Staff findByStaffCode(String staffCode);
+    boolean existsByStaffCode(String staffCode);
 }

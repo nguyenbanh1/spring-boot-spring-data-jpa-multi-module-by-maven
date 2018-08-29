@@ -21,30 +21,35 @@ public class StaffController {
     private StaffService staffService;
 
     //them 1 staff vao DB
-//    @RequestMapping(value = "test/staff",method = RequestMethod.POST,produces = {"application/json"})
-//    public ResponseEntity<?> postStaff(@RequestBody Staff new_staff,@RequestHeader int id){
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        if(new_staff==null){
-//            httpHeaders.add("status","fail");
-//            httpHeaders.add("message","error");
-//            return ResponseEntity.noContent().headers(httpHeaders).build();
-//        }
-//       // Staff staff_create = staffDAO.findByStaffcode(code).orElse(new Staff());
-//        Date date = new Date();
-//        new_staff.setDate_created(date);
-//        //new_staff.setDate_update(date);
-//        //new_staff.setUser_update(staff_create);
-//        //.out.print(staff_create.getId());
-//        //new_staff.setUser_created(staff_create.getId());
-//        new_staff.setUser_created(id);
-//        new_staff.setStatus(true);
-//
-//        staffDAO.save(new_staff);
-//        httpHeaders.add("status" , "success");
-//
-//        return ResponseEntity.accepted().headers(httpHeaders).build();
-//
-//    }
+    @RequestMapping(value = "test/staff",method = RequestMethod.POST,produces = {"application/json"})
+    public ResponseEntity<?> createStaff(@RequestBody Staff new_staff,@RequestHeader int id){
+        HttpHeaders httpHeaders = new HttpHeaders();
+
+
+        if(new_staff==null){
+            httpHeaders.add("status","fail");
+            httpHeaders.add("message","error");
+            return ResponseEntity.noContent().headers(httpHeaders).build();
+        }
+       // Staff staff_create = staffDAO.findByStaffcode(code).orElse(new Staff());
+        Date date = new Date();
+        new_staff.setDate_created(date);
+        //new_staff.setDate_update(date);
+        //new_staff.setUser_update(staff_create);
+        //.out.print(staff_create.getId());
+        //new_staff.setUser_created(staff_create.getId());
+        new_staff.setUser_created(id);
+        new_staff.setStatus(true);
+
+        if(staffService.insert(new_staff))
+            httpHeaders.add("status" , "success");
+
+        else
+            httpHeaders.add("status","fail");
+
+        return ResponseEntity.accepted().headers(httpHeaders).build();
+
+    }
 
 //    update 1 staff
     @RequestMapping(value = "test/staff/edit/{code}",method = RequestMethod.PUT,produces = {"application/json"})

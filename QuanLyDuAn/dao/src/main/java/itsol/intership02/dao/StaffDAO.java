@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-
+@Repository
 public interface StaffDAO extends JpaRepository<Staff,Integer>, CustomRepository {
 
 
@@ -21,6 +22,7 @@ public interface StaffDAO extends JpaRepository<Staff,Integer>, CustomRepository
     Staff findByStaffcode(String code);
 
     boolean existsByUsername(String username);
+    boolean existsByStaffcode(String staffCode);
 
 
     @Procedure(procedureName = "pgk_staff.delete_staff")
