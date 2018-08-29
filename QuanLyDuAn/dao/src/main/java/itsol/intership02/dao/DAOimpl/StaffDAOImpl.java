@@ -3,9 +3,11 @@ package itsol.intership02.dao.DAOimpl;
 import itsol.intership02.generic.CustomRepository;
 import itsol.intership02.generic.GenericRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class StaffDAOImpl implements CustomRepository {
     @Autowired
     private GenericRepository genericRepository;

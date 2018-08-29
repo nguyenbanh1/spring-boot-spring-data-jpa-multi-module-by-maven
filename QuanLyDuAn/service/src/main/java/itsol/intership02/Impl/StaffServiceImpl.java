@@ -14,45 +14,51 @@ import java.util.List;
 public class StaffServiceImpl implements StaffService {
 
     @Autowired
-    private GenericRepository genericRepository;
+    private StaffDAO staffDAO;
 
     @Autowired
-    private StaffDAO staffdao;
+    private GenericRepository genericRepository;
+
+
 
     @Override
-    public List<Object> getOne(List params) {
-        return genericRepository.getEntityFromPackage("PGK_STAFF.get_one_staff",params);
+    public List<Object> getAllStaff(List params) {
+        return staffDAO.getList(params);
     }
 
     @Override
-    public List<Object> getAll(List params) {
-        return genericRepository.getEntityFromPackage("PGK_STAFF.get_all_staff",params);
+    public void saveOrUpdate(Staff staff) {
+        staffDAO.save(staff);
+    }
+
+
+    @Override
+    public List<Object> getByStaffCode(List params) {
+        String staffCode = params.get(0).toString();
+        findByStaffCode(staffCode);
+        return staffDAO.getOne(params);
     }
 
     @Override
-    public void update(Staff staff) {
+    public Staff findByStaffCode(String staffCode) {
+        Staff result=staffDAO.findByStaffcode(staffCode);
+        if (result==null)
+            throw new DataNotFoundException("Staff could not be found with staffCode = " + staffCode);
+        return staffDAO.findByStaffcode(staffCode);
     }
 
-    @Override
-    public Staff findbyStaffcode (String staffcode){
-        Staff staff = staffdao.findByStaffcode(staffcode);
-        if(staff == null)
-        {
-            throw new DataNotFoundException("Staff code not be found with staffcode :"+ staffcode);
-        }
-        return staffdao.findByStaffcode(staffcode);
-    }
+
+
     @Override
     public void delete(List params) {
+        //id update truoc, id nguoi update sau
         String staffcode = params.get(0).toString();
-        findbyStaffcode(staffcode);
+        findByStaffCode(staffcode);
 
         List list = new ArrayList();
-        list.add (0,"PGK_STAFF.DELETE_STAFF");
+        list.add (0,"PGK_STAFF.delete_staff ");
         list.addAll(params);
-        staffdao.executeSP(list);
-
-
+        staffDAO.executeSP(list);
     }
 
     @Override

@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface StaffService {
 
-    List<Object> getOne(List params);
-    List<Object> getAll(List params);
-    void update (Staff staff);
+    List<Object> getByStaffCode(List params);
+    List<Object> getAllStaff(List params);
+    void saveOrUpdate (Staff staff);
     void delete (List params);
     void insert (Staff staff);
-    Staff findbyStaffcode(String Staffcode);
+    Staff findByStaffCode(String staffCode);
 }

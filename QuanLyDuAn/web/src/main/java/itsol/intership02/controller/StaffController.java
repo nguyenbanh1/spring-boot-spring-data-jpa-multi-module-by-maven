@@ -1,5 +1,6 @@
 package itsol.intership02.controller;
 
+import exception.NoInputDataException;
 import itsol.intership02.StaffService;
 import itsol.intership02.entities.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import Utils.StringUtil;
 import javax.persistence.StoredProcedureQuery;
 import java.util.*;
 
@@ -45,40 +46,58 @@ public class StaffController {
 //
 //    }
 
-    //update 1 staff
-//    @RequestMapping(value = "test/staff/edit/{code}",method = RequestMethod.POST,produces = {"application/json"})
-//    public ResponseEntity<?> updateStaff(@RequestBody Staff updatedStaff, @PathVariable("code") String code){//,@RequestHeader String code){
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        //Staff staffUpdate = staffDAO.findByStaffcode(code).orElse(new Staff());
+//    update 1 staff
+    @RequestMapping(value = "test/staff/edit/{code}",method = RequestMethod.PUT,produces = {"application/json"})
+    public ResponseEntity<?> updateStaff(@RequestBody Staff updatedStaff, @PathVariable("code") String code){//,@RequestHeader String code){
+        HttpHeaders httpHeaders = new HttpHeaders();
+//        if (!updatedStaff.getStaffName().matches(StringUtil.NAME_REGEX))
+//            throw new NoInputDataException("The name is invalid. Please input again!");
+        Date date= new Date();
+        boolean status;
+        boolean gender;
+        if (updatedStaff.isLook_status())
+            status=true;
+        else status=false;
+
+        if (updatedStaff.isGender())
+            gender=true;
+        else gender=false;
+
+        Staff staff= staffService.findByStaffCode(code);
+        staff.setPhone_number(updatedStaff.getPhone_number());
+        staff.setAddress(updatedStaff.getAddress());
+        staff.setTemporary_address(updatedStaff.getTemporary_address());
+        staff.setEmail(updatedStaff.getEmail());
+        staff.setBanking_account(updatedStaff.getBanking_account());
+        staff.setDegree(updatedStaff.getDegree());
+        staff.setEnd_working_day(updatedStaff.getEnd_working_day());
+        staff.setGender(gender);
+        staff.setLook_status(status);
+
+
+
+        staff.setDate_update(date);
+        //staff.setUser_update(staffCode);
+
 //        if(staffUpdate==null||updatedStaff==null)
 //        {
 //            httpHeaders.add("status","fail");
 //            httpHeaders.add("message","error");
 //            return ResponseEntity.noContent().headers(httpHeaders).build();
 //        }
-//        Date date = new Date();
-//        updatedStaff.setDate_update(date);
-//        updatedStaff.setUser_update(staffUpdate.getId());
-//        //updateStaff.setUser_update(staffUpdate);
-//
-//        //staffDAO.save(updatedStaff);
-//
-//        httpHeaders.add("status" , "success");
-//
-//        return ResponseEntity.accepted().headers(httpHeaders).build();
-//    }
+        staffService.saveOrUpdate(staff);
+        httpHeaders.add("status" , "success");
+
+        return ResponseEntity.accepted().headers(httpHeaders).build();
+    }
 
 
     //delete 1 staff
-   @RequestMapping(value = "test/staff/delete/{code}",method = RequestMethod.POST,produces = {"application/json"})
-    public ResponseEntity<?>  deleteStaff(@PathVariable("code")String code,@RequestHeader String code2){
+   @RequestMapping(value = "test/staff/delete/{code}",method = RequestMethod.DELETE,produces = {"application/json"})
+    public ResponseEntity<?>  deleteStaff(@PathVariable("code")String code,@RequestHeader String staffCode){
         HttpHeaders httpHeaders = new HttpHeaders();
-        if (code2==null){
-            httpHeaders.add("status","fail");
-            httpHeaders.add("message","error");
-            return ResponseEntity.noContent().headers(httpHeaders).build();
-        }
-        //staffDAO.deleteStaff(code,code2);
+        List params= Arrays.asList(code,staffCode);
+        staffService.delete(params);
         httpHeaders.add("status" , "success");
 
         return ResponseEntity.accepted().headers(httpHeaders).build();
@@ -90,7 +109,7 @@ public class StaffController {
     @RequestMapping(value = "/test/staff/{code}",method = RequestMethod.GET,produces = {"application/json"})
     public ResponseEntity<Object>  getStaffByCode(@PathVariable("code")String code){
        List param= Arrays.asList(code);
-       List<Object> list= staffService.getOne(param);
+       List<Object> list= staffService.getByStaffCode(param);
         return new ResponseEntity<>(list,HttpStatus.ACCEPTED);
     }
 
@@ -101,7 +120,7 @@ public class StaffController {
     {
 
         List param = Arrays.asList(code,name);
-        List<Object> list = staffService.getAll(param);
+        List<Object> list = staffService.getAllStaff(param);
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
