@@ -24,7 +24,7 @@ public class NotificationController {
     public ResponseEntity<?> addNotification(@RequestBody Notification new_notification, @RequestHeader String code) {
 
 
-        Staff staff_create = staffDAO.findByStaffcode(code).orElse(new Staff());
+        Staff staff_create = staffDAO.findByStaffcode(code);
         Date date = new Date();
 
         new_notification.setDate_created(date);

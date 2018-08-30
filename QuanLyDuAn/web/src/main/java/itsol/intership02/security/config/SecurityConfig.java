@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	@Qualifier("userDetailsService")
+    @Qualifier(value = "userDetailsService")
 	private UserDetailsService userDetailsService;
 
 	@Override
@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers("/admin/**").hasRole("ADMIN")
+				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				.antMatchers(HttpMethod.POST,"/login").permitAll()
 				.antMatchers(HttpMethod.POST,"/register").permitAll()
 				.antMatchers(HttpMethod.GET,"/test/**").permitAll()
