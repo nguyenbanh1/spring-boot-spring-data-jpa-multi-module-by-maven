@@ -22,12 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		System.out.println("load user by Username");
 
-		Staff staff = staffDAO.findByUsername(username);//cần staff thỏa mản cả username và password
-
-		if(staff == null){
-			System.out.println("oke");
-		}
-
+		Staff staff = staffDAO.findByUsername(username).orElse(null);//cần staff thỏa mản cả username và password
 
 		CustomUserDetails userDetails = null;
 		if (staff != null) {
