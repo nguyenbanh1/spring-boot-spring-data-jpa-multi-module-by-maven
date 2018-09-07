@@ -20,7 +20,6 @@ public class CustomUserDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
-		System.out.println("query to role");
 		return staff.getMap_role_userList().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole_id().getName()))
 				.collect(Collectors.toList());
 

@@ -3,6 +3,7 @@ package itsol.intership02.security.manager.authentication;
 /**
  * Created by nhs3108 on 29/03/2017.
  */
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.context.ApplicationContext;
@@ -21,9 +22,9 @@ public class TokenAuthenticationService {
     private final String HEADER_STRING = "Authorization";
 
 
-    public  void addAuthentication(HttpServletResponse res,  Authentication authResult) {
+    public  void addAuthentication(HttpServletResponse res, Authentication authResult) {
 
-        System.out.println("When username exist, this function execute and after response for client");
+
         String JWT = Jwts.builder()
                 .setSubject(authResult.getName())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
@@ -39,7 +40,7 @@ public class TokenAuthenticationService {
     }
 
     public  Authentication getAuthentication(HttpServletRequest request,HttpServletResponse res,ApplicationContext applicationContext) {
-        System.out.println("When login success, client got authentication string and give it for every request ");
+
         UserDetailsService userDetailsService = applicationContext.getBean(CustomUserDetailsService.class);
 
 
@@ -47,7 +48,6 @@ public class TokenAuthenticationService {
 
         if (token != null) {
             // parse the token.
-            System.out.println("token got");
             String user = Jwts.parser()
                     .setSigningKey(SECRET)
                     .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
